@@ -1,0 +1,16 @@
+#!/bin/sh
+# Commit hook for Lixibox
+
+BRANCH_NAME=$(git branch | grep '*' | sed 's/* //')
+REGEX_CHECK="^(feature|hotfix)\/[a-z]+\-[0-9]+\-[a-z\-]+$"
+FILE_NAME=$1
+
+if [[ $BRANCH_NAME =~ $REGEX_CHECK ]]; then
+  # feature/lxb-1234-branch-name -> LXB-1234
+  # hotfix/lxb-1234-branch-name -> LXB-1234
+  TICKET_ID=$(echo $BRANCH_NAME | cut -d'/' -f2 | cut -d'-' -f1 -f2 | tr '[a-z]' '[A-Z]')
+
+  echo "" >> "$FILE_NAME"
+  echo "" >> "$FILE_NAME"
+  echo "[$TICKET_ID]" >> "$FILE_NAME"
+fi

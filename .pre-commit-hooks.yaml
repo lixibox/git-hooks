@@ -1,0 +1,6 @@
+-   id: auto-attach-ticket-id
+    name: Auto attach TicketID
+    description: Auto attach a TicketID to the Commit description
+    entry: events/commit-msg
+    language: script
+    stages: [commit-msg]

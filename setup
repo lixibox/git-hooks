@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Backup
+if [ -f .git/hooks/commit-msg ]; then
+  mv .git/hooks/commit-msg .git/hooks/commit-msg.backup
+fi
+
+# Download the hook
+curl --remote-name https://raw.githubusercontent.com/lixibox/git-hooks/main/events/commit-msg
+mv commit-msg .git/hooks/commit-msg
+
+# Set permission for hook file
+chmod +x .git/hooks/commit-msg
