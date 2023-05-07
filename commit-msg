@@ -1,0 +1,28 @@
+#!/bin/sh
+# Commit hook for Lixibox
+
+BRANCH_NAME=$(git branch | grep '*' | sed 's/* //')
+FILE_NAME=$1
+IFS="-"
+set $BRANCH_NAME
+INCLUDED_TICKET_ID = [[ $BRANCH_NAME = feature/* ]]
+INCLUDED_TICKET_ID = [[ $BRANCH_NAME = hotfix/* ]]
+
+
+if [[ $BRANCH_NAME = feature/* ]]; then
+  echo "" >> "$FILE_NAME"
+  echo "" >> "$FILE_NAME"
+
+fi
+
+if [ "$1" == "feature/lxb" ]; then
+    echo "" >> "$FILE_NAME"
+    echo "" >> "$FILE_NAME"
+    echo "[LXB-$2]" >> "$FILE_NAME"
+fi
+
+if [ "$1" == "hotfix/lxb" ]; then
+    echo "" >> "$FILE_NAME"
+    echo "" >> "$FILE_NAME"
+    echo "[LXB-$2]" >> "$FILE_NAME"
+fi
